@@ -3,17 +3,23 @@ GO
 USE Esp32_Data
 
 CREATE TABLE Professor (
-    Sala int NOT NULL,
     Prontuario int PRIMARY KEY NOT NULL,
-    DiasSemana varchar(100) NOT NULL,
-    HorarioInicio char(5) NOT NULL,
-    HorarioFIm char(5) NOT NULL,
+    Nome varchar(50) NOT NULL,
+);
+
+CREATE TABLE Grade_Professor (
+    ID_Grade INT PRIMARY KEY IDENTITY(1,1),
+    Prontuario_ID INT NOT NULL,
+    DiaSemana varchar(100) NOT NULL,
+    HorarioInicio TIME NOT NULL,
+    HorarioFim TIME NOT NULL,
+    CONSTRAINT FK_Grade_Professor FOREIGN KEY (Prontuario_ID) REFERENCES Professor(Prontuario)
 );
 
 CREATE TABLE Chave (
-    ID_Chave int PRIMARY KEY IDENTITY(1,1) NOT NULL,
-    Sala int,
-    Chave int,
+    ID_Chave int PRIMARY KEY NOT NULL,
+    Especificação varchar(100) NOT NULL,
+    Sala varchar(5) NOT NULL,
 );
 
 CREATE TABLE Liberacao (
